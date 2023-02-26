@@ -11,5 +11,14 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Soumyajit-1/connectBuddy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Soumyajit-1/connectBuddy/issues"
+  },
+  "homepage": "https://github.com/Soumyajit-1/connectBuddy#readme"
 }
