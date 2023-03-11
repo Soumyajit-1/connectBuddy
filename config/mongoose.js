@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/connectBuddy_db');
+mongoose.connect(process.env.MONGO_CON);
 
 const db = mongoose.connection;
 

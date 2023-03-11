@@ -3,8 +3,11 @@ const User= require('../models/user');
 
 
 module.exports.profile=function(req,res){
-    res.render('user_profile',{
-        title: res.locals.user.name
+    User.findById(req.params.id,function(err,user){
+        return res.render('user_profile',{
+            title:res.locals.user.name+"'s profile",
+            this_user: user
+        })
     })
 }
 

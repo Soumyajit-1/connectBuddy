@@ -1,7 +1,22 @@
+const Post=require('../models/post');
+const Comment =require('../models/comment');
+const User=require('../models/user');
 module.exports.home =function(req,res){
-    console.log(req.cookies);
-    res.cookie('ssp',78);
-    return res.render('home',{
-        title: "Home"
+    // Post.find({},function(err,posts){
+    //     if(err){console.log('error in finding post')}
+    //     return res.render('home',{
+    //         title:"ConnectBuddy",
+    //         posts: posts
+    //     });
+    // });
+    Post.find({}).populate('user').populate({path: 'comments',populate:{path:'user'}}).exec(function(err,posts){
+        if(err){console.log('error finding posts')}
+        User.find({},function(err,users){
+            return res.render('home',{
+                title:"ConnectBuddy",
+                posts: posts,
+                all_user:users
+           });
+        })
     });
 }
