@@ -1,10 +1,11 @@
 <header>
     Page Header
-
+    <br>
+    <a href="/">HOME</a>
     <ul>
         <% if (locals.user){ %>
             <li>
-                <a href="/users/profile">
+                <a href="/users/profile/<%=locals.user.id%>">
                     <%= user.name %>
                 </a>
             </li>
@@ -20,8 +21,6 @@
             <li>
                 <a href="/users/sign-up">Sign Up</a>
             </li>
-
-
         <% } %>
     </ul>
 

@@ -1,22 +1,26 @@
 const Post=require('../models/post');
 const Comment =require('../models/comment');
 const User=require('../models/user');
-module.exports.home =function(req,res){
-    // Post.find({},function(err,posts){
-    //     if(err){console.log('error in finding post')}
-    //     return res.render('home',{
-    //         title:"ConnectBuddy",
-    //         posts: posts
-    //     });
-    // });
-    Post.find({}).populate('user').populate({path: 'comments',populate:{path:'user'}}).exec(function(err,posts){
-        if(err){console.log('error finding posts')}
-        User.find({},function(err,users){
-            return res.render('home',{
-                title:"ConnectBuddy",
-                posts: posts,
-                all_user:users
-           });
-        })
-    });
+module.exports.home = async function(req,res){
+    try{
+        let posts= await Post.find({})
+        .populate('user')
+        .populate({
+            path:'comments',
+            populate:{
+                path:'user'
+            }
+        });
+
+        let users= await User.find({});
+
+        return res.render('home',{
+            title:"ConnectBuddy",
+            posts: posts,
+            all_user:users
+        });
+    }catch(err){
+        console.log('error',err);
+        return;
+    }
 }
