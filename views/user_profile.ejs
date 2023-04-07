@@ -1,9 +1,11 @@
 <link rel="stylesheet" href="/css/user_profile.css">
 <h1>User Profile Page</h1>
 
-<% if(user.avatar){%>
+<% if(user.avatar&&user.avatar==this_user.avatar){%>
     <img src="<%= user.avatar %>" alt="<%= user.name %>" width="100" >
-<%}%>
+<%}else if(this_user.avatar){%>
+    <img src="<%= this_user.avatar %>" alt="<%= this_user.name %>" width="100" >
+  <%}%>
 
 <h1><%=this_user.name%></h1>
 <h2><%=this_user.email%></h2>

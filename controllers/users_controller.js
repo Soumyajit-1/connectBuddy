@@ -67,7 +67,11 @@ module.exports.update = async function(req,res){
 
                 if(req.file){
                     if(user.avatar){
-                        fs.unlinkSync(path.join(__dirname,'..',user.avatar));
+                        try{
+                            fs.unlinkSync(path.join(__dirname,'..',user.avatar));
+                        }catch(err){
+                            console.log('error in finding file path to delete',err);
+                        }
                     }
                     user.avatar = User.avatarPath + '/' + req.file.filename;
                 }
